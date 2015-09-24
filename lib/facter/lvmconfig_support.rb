@@ -5,7 +5,7 @@
 #
 Facter.add("lvm_support") do
   confine :kernel => :linux
-  vgdisplay =  Facter::Util::Resolution.exec('which vgs')
+  vgdisplay =  Facter::Core::Execution.exec('which vgs')
   if $?.exitstatus
     vgs = %x[vgs -o name,size --units m --noheadings 2> /dev/null]
     setcode { 'yes'}
